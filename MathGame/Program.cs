@@ -53,11 +53,44 @@ Q - Quit the Prog");
 void DivisionGame(string message)
 {
     Console.WriteLine(message);
+
+    var random = new Random();
+    int firstNumber = random.Next(1, 9);
+    int secondNumber = random.Next(1, 9);
+
+    Console.WriteLine($"{firstNumber} / {secondNumber}");
+    var result = Console.ReadLine();
+
+    if (int.Parse(result) == firstNumber / secondNumber)
+    {
+        Console.WriteLine("Correct!");
+    }
+    else
+    {
+        Console.WriteLine("Incorrect.");
+    }
+
 }
 
 void MultiplicationGame(string message)
 {
     Console.WriteLine(message);
+
+    var random = new Random();
+    int firstNumber = random.Next(1, 9);
+    int secondNumber = random.Next(1, 9);
+
+    Console.WriteLine($"{firstNumber} * {secondNumber}");
+    var result = Console.ReadLine();
+
+    if (int.Parse(result) == firstNumber * secondNumber)
+    {
+        Console.WriteLine("Correct!");
+    }
+    else
+    {
+        Console.WriteLine("Incorrect.");
+    }
 }
 
 void SubtractionGame(string message)
