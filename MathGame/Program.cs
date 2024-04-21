@@ -1,31 +1,17 @@
-﻿Console.WriteLine("Please type your name");
-var name = Console.ReadLine();
-var date = DateTime.UtcNow;
+﻿var date = DateTime.UtcNow;
 
-Menu(name, date);
+string? name = GetName();
 
-void DivisionGame(string message)
+Menu(name);
+
+string GetName()
 {
-    Console.WriteLine(message);
+    Console.WriteLine("Please type your name");
+    var name = Console.ReadLine();
+    return name;
 }
 
-void MultiplicationGame(string message)
-{
-    Console.WriteLine(message);
-}
-
-void SubtractionGame(string message)
-{
-    Console.WriteLine(message);
-}
-
-void AdditionGame(string message)
-{
-    Console.WriteLine(message);
-
-}
-
-void Menu(string? name, DateTime date)
+void Menu(string name)
 {
     Console.WriteLine("----------------------------------------------------------");
     Console.WriteLine($"Hello {name}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself!");
@@ -63,3 +49,56 @@ Q - Quit the Prog");
             break;
     }
 }
+
+void DivisionGame(string message)
+{
+    Console.WriteLine(message);
+}
+
+void MultiplicationGame(string message)
+{
+    Console.WriteLine(message);
+}
+
+void SubtractionGame(string message)
+{
+    Console.WriteLine(message);
+    var random = new Random();
+    int firstNumber = random.Next(1, 9);
+    int secondNumber = random.Next(1, 9);
+
+    Console.WriteLine($"{firstNumber} - {secondNumber}");
+    var result = Console.ReadLine();
+
+    if (int.Parse(result) == firstNumber - secondNumber)
+    {
+        Console.WriteLine("Correct!");
+    }
+    else
+    {
+        Console.WriteLine("Incorrect.");
+    }
+}
+
+void AdditionGame(string message)
+{
+    Console.WriteLine(message);
+
+    var random = new Random();
+    int firstNumber = random.Next(1, 9);
+    int secondNumber = random.Next(1, 9);
+
+    Console.WriteLine($"{firstNumber} + {secondNumber}");
+    var result = Console.ReadLine();
+
+    if (int.Parse(result) == firstNumber + secondNumber)
+    {
+        Console.WriteLine("Correct!");
+    } else
+    {
+        Console.WriteLine("Incorrect.");
+    }
+
+}
+
+
