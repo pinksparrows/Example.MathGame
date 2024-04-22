@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks.Sources;
 using static System.Formats.Asn1.AsnWriter;
 
 var date = DateTime.UtcNow;
+
+var games = new List<string>();
+
 
 string? name = GetName();
 
@@ -26,16 +30,20 @@ void Menu(string name)
     {
         Console.Clear();
         Console.WriteLine($@"What game would you like to play today? Please choose from the options below:
-                            A - Add
-                            S - Sub
-                            M - Mult
-                            D - Div
-                            Q - Quit the Prog");
+V - View Previous Games
+A - Add
+S - Sub
+M - Mult
+D - Div
+Q - Quit the Prog");
         Console.WriteLine("----------------------------------------------------------");
         var gameSelected = Console.ReadLine();
 
         switch (gameSelected.Trim().ToLower())
         {
+            case "v":
+                GetGames();
+                break;
             case "a":
                 AdditionGame("Addition game");
                 break;
@@ -59,6 +67,20 @@ void Menu(string name)
     } while (isGameOn);
 
     
+}
+
+void GetGames()
+{
+    Console.Clear();
+    Console.WriteLine("Games History:");
+    Console.WriteLine("----------------------------------------------------------");
+    foreach (var game in games)
+    {
+        Console.WriteLine(game);
+    }
+    Console.WriteLine("----------------------------------------------------------\n");
+    Console.WriteLine("Press any key to return to the Main Menu");
+    Console.ReadLine();
 }
 
 void DivisionGame(string message)
@@ -170,9 +192,8 @@ void SubtractionGame(string message)
 
 void AdditionGame(string message)
 {
-    
-
     var random = new Random();
+    var score = 0;
 
     int firstNumber;
     int secondNumber;
@@ -187,7 +208,6 @@ void AdditionGame(string message)
 
         Console.WriteLine($"{firstNumber} + {secondNumber}");
         var result = Console.ReadLine();
-        var score = 0;
 
         if (int.Parse(result) == firstNumber + secondNumber)
         {
@@ -208,8 +228,16 @@ void AdditionGame(string message)
         }
 
         }
+
+    AddToHistory(score, "Addition");
+
+    games.Add($"{DateTime.Now} - Addition: Score={score}");
     }
 
+void AddToHistory(int score, string v)
+{
+    throw new NotImplementedException();
+}
 
 int[] GetDivisionNumbers()
 {
