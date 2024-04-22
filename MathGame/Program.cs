@@ -1,4 +1,5 @@
-﻿using static System.Formats.Asn1.AsnWriter;
+﻿using System;
+using static System.Formats.Asn1.AsnWriter;
 
 var date = DateTime.UtcNow;
 
@@ -18,48 +19,60 @@ void Menu(string name)
     Console.WriteLine("----------------------------------------------------------");
     Console.WriteLine($"Hello {name}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself!");
     Console.WriteLine("\n");
-    Console.WriteLine($@"What game would you like to play today? Please choose from the options below:
+
+    var isGameOn = true;
+
+    do
+    {
+        Console.WriteLine($@"What game would you like to play today? Please choose from the options below:
 A - Add
 S - Sub
 M - Mult
 D - Div
 Q - Quit the Prog");
-    Console.WriteLine("----------------------------------------------------------");
-    var gameSelected = Console.ReadLine();
+        Console.WriteLine("----------------------------------------------------------");
+        var gameSelected = Console.ReadLine();
 
-    switch (gameSelected.Trim().ToLower())
-    {
-        case "a":
-            AdditionGame("Addition game selected");
-            break;
-        case "s":
-            SubtractionGame("Subtraction game selected");
-            break;
-        case "m":
-            MultiplicationGame("Multiplication game selected");
-            break;
-        case "d":
-            DivisionGame("Division game selected");
-            break;
-        case "q":
-            Console.WriteLine("Goodbye");
-            Environment.Exit(1);
-            break;
-        default:
-            Console.WriteLine("Invalid input.");
-            Environment.Exit(1);
-            break;
-    }
+        switch (gameSelected.Trim().ToLower())
+        {
+            case "a":
+                AdditionGame("Addition game");
+                break;
+            case "s":
+                SubtractionGame("Subtraction game");
+                break;
+            case "m":
+                MultiplicationGame("Multiplication game");
+                break;
+            case "d":
+                DivisionGame("Division game");
+                break;
+            case "q":
+                Console.WriteLine("Goodbye");
+                Environment.Exit(1);
+                break;
+            default:
+                Console.WriteLine("Invalid input.");
+                Environment.Exit(1);
+                break;
+        }
+    } while (isGameOn);
+
+    
 }
 
 void DivisionGame(string message)
 {
+    var score = 0;
+
     for (int  i = 0; i < 5; i++)
     {
+        Console.Clear();
+        Console.WriteLine(message);
+
         var divisionNumbers = GetDivisionNumbers();
         var firstNumber = divisionNumbers[0];
         var secondNumber = divisionNumbers[1];
-        var score = 0;
 
         Console.WriteLine($"{firstNumber} / {secondNumber}");
         var result = Console.ReadLine();
@@ -83,7 +96,7 @@ void DivisionGame(string message)
 
 void MultiplicationGame(string message)
 {
-    Console.WriteLine(message);
+    
 
     var random = new Random();
 
@@ -92,7 +105,8 @@ void MultiplicationGame(string message)
 
     for (int i = 0; i < 5; i++)
     {
-
+        Console.Clear();
+        Console.WriteLine(message);
 
         firstNumber = random.Next(1, 9);
         secondNumber = random.Next(1, 9);
@@ -119,7 +133,7 @@ void MultiplicationGame(string message)
 
 void SubtractionGame(string message)
 {
-    Console.WriteLine(message);
+    
 
     var random = new Random();
 
@@ -128,7 +142,8 @@ void SubtractionGame(string message)
 
     for (int i = 0; i < 5; i++)
     {
-
+        Console.Clear();
+        Console.WriteLine(message);
 
         firstNumber = random.Next(1, 9);
         secondNumber = random.Next(1, 9);
@@ -155,7 +170,7 @@ void SubtractionGame(string message)
 
 void AdditionGame(string message)
 {
-    Console.WriteLine(message);
+    
 
     var random = new Random();
 
@@ -164,8 +179,9 @@ void AdditionGame(string message)
 
     for (int i = 0; i < 5; i++) 
     {
+        Console.Clear();
+        Console.WriteLine(message);
 
-        
         firstNumber = random.Next(1, 9);
         secondNumber = random.Next(1, 9);
 
