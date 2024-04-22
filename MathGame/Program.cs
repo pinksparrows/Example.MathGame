@@ -24,12 +24,13 @@ void Menu(string name)
 
     do
     {
+        Console.Clear();
         Console.WriteLine($@"What game would you like to play today? Please choose from the options below:
-A - Add
-S - Sub
-M - Mult
-D - Div
-Q - Quit the Prog");
+                            A - Add
+                            S - Sub
+                            M - Mult
+                            D - Div
+                            Q - Quit the Prog");
         Console.WriteLine("----------------------------------------------------------");
         var gameSelected = Console.ReadLine();
 
@@ -49,11 +50,10 @@ Q - Quit the Prog");
                 break;
             case "q":
                 Console.WriteLine("Goodbye");
-                Environment.Exit(1);
+                isGameOn = false;
                 break;
             default:
                 Console.WriteLine("Invalid input.");
-                Environment.Exit(1);
                 break;
         }
     } while (isGameOn);
@@ -201,9 +201,14 @@ void AdditionGame(string message)
             Console.ReadLine();
         }
 
-        if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
+        if (i == 4)
+        {
+            Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the menu.");
+            Console.ReadLine();
+        }
+
+        }
     }
-}
 
 
 int[] GetDivisionNumbers()
