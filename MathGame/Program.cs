@@ -1,6 +1,10 @@
-﻿using System;
+﻿using MathGame;
+using System;
 using System.Threading.Tasks.Sources;
 using static System.Formats.Asn1.AsnWriter;
+using MathGame;
+
+var menu = new Menu();
 
 var date = DateTime.UtcNow;
 
@@ -113,14 +117,14 @@ void DivisionGame(string message)
 
         if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
     }
+    AddToHistory(score, "Division");
 
 }
 
 void MultiplicationGame(string message)
 {
-    
-
     var random = new Random();
+    var score = 0;
 
     int firstNumber;
     int secondNumber;
@@ -135,7 +139,7 @@ void MultiplicationGame(string message)
 
         Console.WriteLine($"{firstNumber} * {secondNumber}");
         var result = Console.ReadLine();
-        var score = 0;
+        
 
         if (int.Parse(result) == firstNumber * secondNumber)
         {
@@ -151,13 +155,15 @@ void MultiplicationGame(string message)
 
         if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
     }
+
+    AddToHistory(score, "Multiplication");
 }
 
 void SubtractionGame(string message)
 {
     
-
     var random = new Random();
+    var score = 0;
 
     int firstNumber;
     int secondNumber;
@@ -172,7 +178,6 @@ void SubtractionGame(string message)
 
         Console.WriteLine($"{firstNumber} - {secondNumber}");
         var result = Console.ReadLine();
-        var score = 0;
 
         if (int.Parse(result) == firstNumber - secondNumber)
         {
@@ -188,6 +193,8 @@ void SubtractionGame(string message)
 
         if (i == 4) Console.WriteLine($"Game over. Your final score is {score}");
     }
+
+    AddToHistory(score, "Subtraction");
 }
 
 void AdditionGame(string message)
@@ -230,13 +237,11 @@ void AdditionGame(string message)
         }
 
     AddToHistory(score, "Addition");
-
-    games.Add($"{DateTime.Now} - Addition: Score={score}");
     }
 
-void AddToHistory(int score, string v)
+void AddToHistory(int gameScore, string gameType)
 {
-    throw new NotImplementedException();
+    games.Add($"{DateTime.Now} - {gameType}: {gameScore} pts");
 }
 
 int[] GetDivisionNumbers()
