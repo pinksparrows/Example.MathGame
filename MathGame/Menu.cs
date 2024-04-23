@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathGame
+﻿namespace MathGame
 {
     internal class Menu
     {
-        void Menu(string name)
+        GameEngine gameEngine = new();
+        internal void ShowMenu(string name, DateTime date)
         {
             Console.WriteLine("----------------------------------------------------------");
             Console.WriteLine($"Hello {name}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself!");
@@ -32,19 +27,19 @@ Q - Quit the Prog");
                 switch (gameSelected.Trim().ToLower())
                 {
                     case "v":
-                        GetGames();
+                        Helpers.GetGames();
                         break;
                     case "a":
-                        AdditionGame("Addition game");
+                        gameEngine.AdditionGame("Addition game");
                         break;
                     case "s":
-                        SubtractionGame("Subtraction game");
+                        gameEngine.SubtractionGame("Subtraction game");
                         break;
                     case "m":
-                        MultiplicationGame("Multiplication game");
+                        gameEngine.MultiplicationGame("Multiplication game");
                         break;
                     case "d":
-                        DivisionGame("Division game");
+                        gameEngine.DivisionGame("Division game");
                         break;
                     case "q":
                         Console.WriteLine("Goodbye");
